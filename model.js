@@ -1,12 +1,9 @@
 class model {
-    #radius;
-    #posX;
-    #posY;
 
-    constructor(radius, posX, posY){
+    constructor(radius, x, y){
         this.radius = radius;
-        this.posX = posX;
-        this.posY = posY;
+        this.x = x;
+        this.y = y;
     }
 
     getRadius(){
@@ -15,16 +12,18 @@ class model {
     setRadius(radius){
         this.radius = radius;
     }
-    getPosY(){
-        return posY;
+
+    getY(){
+        return this.y;
     }
-    setPosY(posY){
-        this.posY = posY;
+    setY(y){
+        this.y = y;
     }
-    getPosX(){
-        return posX;
+
+    getX(){
+        return this.x;
     }
-    setPosX(posX){
-        this.posX = posX;
+    setX(x){
+        this.x = x;
     }
 }

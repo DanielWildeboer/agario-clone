@@ -1,34 +1,40 @@
 class mediator {
-    players;
+    currentPlayer
     iRenderer;
     #food;
     #inputProcessor;
 
     constructor(){
-        this.players = new player("Daniel");
+        this.currentPlayer = new player("Daniel");
+        console.log(this.currentPlayer);
         this.#food = new food();
+        this.#inputProcessor = new inputProcessor();
+
+        this.mouseCallBack = this.mouseCallBack.bind(this);
+        this.gameLoop = this.gameLoop.bind(this, this.iRenderer);
 
         var canvas = document.getElementById("myCanvas");
+        this.#inputProcessor.setup(canvas, this);
+        this.iRenderer = new renderer(canvas, this);
 
-        this.#inputProcessor = new inputProcessor(canvas, this);
-        this.iRenderer = new renderer(canvas);
-
-        this.setup();
-        console.log("mediator constructor done!");
+        window.requestAnimationFrame(this.gameLoop);
     }
 
-    setup(){
+    gameLoop(){
         
+        this.iRenderer.draw(this.currentPlayer);
+        
+        window.requestAnimationFrame(this.gameLoop);
     }
+
+
     getPlayers(){
         return this.players
     }
     setPlayers(players){
         this.players = players;
     }
-    static mouseCallBack(x, y){
-        this.iRenderer.draw(this.players);
-    }
+
     getFood(){
         return food;
     }
@@ -36,6 +42,11 @@ class mediator {
         this.food;
     }
 
+    mouseCallBack(x, y){
+        this.currentPlayer.setDx(x);
+        this.currentPlayer.setDy(y);
+    }
+    
     eat(model1, model2){
         //TODO: logic to eat others.
     }

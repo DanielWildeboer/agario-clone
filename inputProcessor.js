@@ -1,15 +1,15 @@
 class inputProcessor {
- 
-    constructor(canvas){
-        this.setup(canvas);
+    setup(canvas, med){
+        this.medi = med;
+        canvas.addEventListener('mousemove', bind(this, this.mouseMove));
     }
-    setup(canvas){
-        canvas.addEventListener('mousemove', this.mouseMove);
-    }
-    
+
     mouseMove = function(e){
-        this.posX = e.x;
-        this.posY = e.y;
-        mediator.mouseCallBack(e.x, e.y);
+        this.medi.mouseCallBack(e.offsetX, e.offsetY);
+    }
+}
+function bind(scope, fn) {
+    return function() {
+        return fn.apply(scope, arguments);
     }
 }
