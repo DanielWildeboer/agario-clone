@@ -7,7 +7,7 @@ class model {
     }
 
     getRadius(){
-        return radius;
+        return this.radius;
     }
     setRadius(radius){
         this.radius = radius;
@@ -26,4 +26,5 @@ class model {
     setX(x){
         this.x = x;
     }
+    
 }
